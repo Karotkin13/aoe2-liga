@@ -62,13 +62,13 @@ function updateStats() {
 
 function renderTable(stats) {
     const tbody = document.querySelector("#league-table tbody");
-    const sorted = Object.entries(stats).sort((a, b) => (b[1].wins * 3) - (a[1].wins * 3));
+    const sorted = Object.entries(stats).sort((a, b) => (b[1].wins) - (a[1].wins));
     tbody.innerHTML = sorted.map(([name, data]) => {
         const wr = data.total > 0 ? ((data.wins/data.total)*100).toFixed(1) : 0;
         return `<tr>
             <td><img src="${players[name].img}" class="avatar"><strong>${name}</strong></td>
             <td>${data.total}</td><td>${data.wins}</td><td>${data.losses}</td>
-            <td>${wr}%</td><td style="color:#ffcc00; font-weight:bold">${data.wins*3}</td>
+            <td>${wr}%</td><td style="color:#ffcc00; font-weight:bold">${data.wins}</td>
         </tr>`;
     }).join('');
 }
@@ -91,5 +91,6 @@ function renderMatches() {
         `<li><span>⚔️ ${m.p1} vs ${m.p2}</span> <strong>Vítěz: ${m.winner}</strong></li>`
     ).join('');
 }
+
 
 loadData();
