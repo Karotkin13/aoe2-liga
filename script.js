@@ -11,7 +11,7 @@ let matches = [];
 
 async function loadData() {
     try {
-        const response = await fetch(SHEET_CSV_URL);
+        const response = await fetch(SHEET_CSV_URL + '&t=' + new Date().getTime());
         const data = await response.text();
         parseCSV(data);
         updateStats();
@@ -94,3 +94,4 @@ function renderMatches() {
 
 
 loadData();
+
